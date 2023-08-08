@@ -10,5 +10,24 @@ function getComputerChoice(){
     }
 }
 
+//a game itself
+function playRound(playerSelection, computerSelection){
+    let playerChoice = playerSelection.toLowerCase();
+    let computerChoice = computerSelection.toLowerCase();
+    
+    if (playerChoice === computerChoice){
+        return `draw\n your choice : ${playerChoice}\n computer choice : ${computerChoice}`;
+    }else if ( (playerChoice === "rock" && computerChoice === "scissors")
+        || (playerChoice === "paper" && computerChoice === "rock")
+        || (playerChoice === "scissors" && computerChoice === "paper") ){
+            return `YOU WIN!\n your choice : ${playerChoice}\n beats \ncomputer choice : ${computerChoice}`;
+    } else {    
+        return `YOU LOSE!\n your choice : ${playerChoice}\n beats computer choice : ${computerChoice}`;
+    }
+}
 
 
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+
+console.log(playRound(playerSelection, computerSelection));
