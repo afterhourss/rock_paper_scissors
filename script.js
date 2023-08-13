@@ -1,5 +1,5 @@
 //DOM
-const matchResult = document.querySelectorAll('div');
+const matchResult = document.querySelector('.final-result');
 const displayScore = document.querySelectorAll('p');
 
 
@@ -24,24 +24,27 @@ function playRound(playerSelection, computerSelection){
     let computerChoice = computerSelection.toLowerCase();
     
     if (playerChoice === computerChoice){
-        matchResult[3].textContent = `DRAW!\n your choice : ${playerChoice}\n computer choice : ${computerChoice}`;
+        matchResult.innerHTML = `<h3>DRAW!</h3>` +
+        `<p>your choice : ${playerChoice} || computer choice : ${computerChoice}</p>`;
     }else if ( (playerChoice === "rock" && computerChoice === "scissors")
         || (playerChoice === "paper" && computerChoice === "rock")
         || (playerChoice === "scissors" && computerChoice === "paper") ){
         playerScore++;
         displayScore[0].textContent = playerScore;
-        matchResult[3].textContent = `YOU WIN!\n your choice : ${playerChoice}\n beats \ncomputer choice : ${computerChoice}`;
+        matchResult.innerHTML = `<h3>YOU WIN!</h3>` +
+        `<p>your choice : ${playerChoice}\n beats \ncomputer choice : ${computerChoice}</p>`;
     } else {
         computerScore++;
         displayScore[1].textContent = computerScore;
-        matchResult[3].textContent = `YOU LOSE!\n your choice : ${playerChoice}\n beats computer choice : ${computerChoice}`;
+        matchResult.innerHTML = `<h3>YOU LOSE!</h3>` +
+        `<p>your choice : ${playerChoice}\n beats computer choice : ${computerChoice}</p>`;
     }
 
-    if(playerScore == 5 || computerScore == 5){
-        matchResult[3].textContent = "YOU WIN";
+    if(playerScore == 5){
+        matchResult.innerHTML = "<h1>YOU WIN</h1>";
         return restartGame();
     } else if (computerScore == 5){
-        matchResult[3].textContent = "YOU LOSE BITCH";
+        matchResult.innerHTML = "<h1>YOU LOSE BITCH</h1>";
         return restartGame();
     }
 }
